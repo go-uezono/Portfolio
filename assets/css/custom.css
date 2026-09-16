@@ -1,0 +1,256 @@
+/*
+	Portfolio overrides.
+	Load after main.css. Change tokens here instead of editing the template.
+*/
+
+:root {
+	--space-xs: 0.5rem;
+	--space-sm: 1rem;
+	--space-md: 1.5rem;
+	--space-lg: 2.5rem;
+
+	--btn-height: 2.75rem;
+	--btn-pad-x: 1.35rem;
+	--btn-letter-spacing: 0.2rem;
+	--btn-gap: 1rem;
+
+	--article-width: 40rem;
+	--article-pad-y: 4.5rem;
+	--article-pad-x: 2.5rem;
+	--article-pad-bottom: 1.5rem;
+
+	--header-gap: 3.5rem;
+	--header-gap-small: 2rem;
+	--inner-pad-y: 3rem;
+	--inner-pad-x: 2rem;
+	--nav-item-width: 11rem;
+	--nav-height: 2.75rem;
+
+	--logo-size: 8.5rem;
+	--logo-size-small: 7rem;
+
+	--wrapper-pad-y: 4rem;
+	--wrapper-pad-x: 2rem;
+	--image-main-margin: 2.5rem;
+	--social-gap: 0.45rem;
+	--social-size: 1.85rem;
+}
+
+/* CTA vs social icons */
+#header .content .inner .button + .social-icons {
+	margin-top: var(--space-lg);
+}
+
+.social-icons {
+	margin-top: var(--space-lg);
+	margin-bottom: 0;
+	text-align: center;
+}
+
+.social-icons a {
+	margin: 0 var(--social-gap);
+	font-size: var(--social-size);
+}
+
+/* Buttons */
+.button,
+input[type="submit"],
+input[type="reset"],
+input[type="button"] {
+	height: var(--btn-height);
+	line-height: var(--btn-height);
+	padding: 0 var(--btn-pad-x);
+	letter-spacing: var(--btn-letter-spacing);
+}
+
+input[type="submit"],
+input[type="reset"],
+input[type="button"] {
+	line-height: calc(var(--btn-height) - 2px);
+}
+
+/* Space between action buttons (replaces the template negative-margin trick) */
+ul.actions {
+	display: flex;
+	gap: var(--btn-gap);
+	margin-left: 0;
+}
+
+ul.actions li {
+	padding: 0;
+}
+
+ul.actions.stacked {
+	flex-direction: column;
+	align-items: stretch;
+	gap: var(--btn-gap);
+	width: 100%;
+}
+
+ul.actions.stacked li {
+	padding: 0;
+	width: 100%;
+}
+
+ul.actions.stacked li > *,
+ul.actions.stacked .button {
+	width: 100%;
+}
+
+@media screen and (max-width: 480px) {
+	ul.actions:not(.fixed) {
+		gap: var(--btn-gap);
+	}
+
+	ul.actions:not(.fixed) li {
+		padding: 0;
+	}
+}
+
+/* Header stack: margin and the connecting rule must stay in sync */
+#header > * {
+	margin-top: var(--header-gap);
+}
+
+#header > *:before {
+	top: calc((var(--header-gap) * -1) - 1px);
+	height: calc(var(--header-gap) + 1px);
+}
+
+#header .content .inner {
+	padding: var(--inner-pad-y) var(--inner-pad-x);
+}
+
+#header .logo {
+	width: var(--logo-size);
+	height: var(--logo-size);
+	line-height: var(--logo-size);
+	overflow: hidden;
+}
+
+#header .logo img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: 50% 20%;
+	transform: scale(1.55);
+	transform-origin: 50% 22%;
+	border-radius: 100%;
+}
+
+#header nav {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+}
+
+#header nav ul {
+	justify-content: center;
+}
+
+#header nav ul li {
+	flex: 0 0 var(--nav-item-width);
+}
+
+#header nav ul li a {
+	min-width: 0;
+	width: 100%;
+	height: var(--nav-height);
+	line-height: var(--nav-height);
+	padding: 0 0.75rem;
+	text-align: center;
+}
+
+@media screen and (max-width: 736px) {
+	#header > * {
+		margin-top: var(--header-gap-small);
+	}
+
+	#header > *:before {
+		top: calc((var(--header-gap-small) * -1) - 1px);
+		height: calc(var(--header-gap-small) + 1px);
+	}
+
+	#header .content .inner {
+		padding: 2.5rem 1rem;
+	}
+
+	#header .logo {
+		width: var(--logo-size-small);
+		height: var(--logo-size-small);
+		line-height: var(--logo-size-small);
+	}
+}
+
+/* Article panel */
+#main article {
+	width: var(--article-width);
+	padding: var(--article-pad-y) var(--article-pad-x) var(--article-pad-bottom);
+}
+
+@media screen and (max-width: 736px) {
+	#main article {
+		padding: 3.5rem 2rem 0.5rem;
+	}
+}
+
+@media screen and (max-width: 480px) {
+	#main article {
+		padding: 3rem 1.5rem 0.5rem;
+	}
+}
+
+/* Photo spacing */
+.image.main {
+	margin: var(--image-main-margin) 0;
+}
+
+@media screen and (max-width: 736px) {
+	.image.main {
+		margin: 2rem 0;
+	}
+}
+
+@media screen and (max-width: 480px) {
+	.image.main {
+		margin: var(--space-md) 0;
+	}
+}
+
+/* Page gutter */
+#wrapper {
+	padding: var(--wrapper-pad-y) var(--wrapper-pad-x);
+}
+
+@media screen and (max-width: 1680px) {
+	#wrapper {
+		padding: 3rem var(--wrapper-pad-x);
+	}
+}
+
+@media screen and (max-width: 736px) {
+	#wrapper {
+		padding: 2rem 1rem;
+	}
+}
+
+@media screen and (max-width: 480px) {
+	#wrapper {
+		padding: 1rem;
+	}
+
+	#header nav ul li {
+		flex: 1 1 auto;
+		width: 100%;
+	}
+}
+
+/* Nested project: back to Projects */
+.article-back {
+	margin-top: var(--space-lg);
+}
+
+.image.main:has(img[src=""]) {
+	display: none;
+}
