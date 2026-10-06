@@ -40,8 +40,9 @@
 						<nav>
 							<ul>
 								<li><a href="#proj">Projects</a></li>
-								<li><a href="#emp">Employment</a></li>
+								<!-- <li><a href="#emp">Employment</a></li> -->
 								<li><a href="#resume">Resume</a></li>
+								<li><a href="#elements">Elements</a></li>
 							</ul>
 						</nav>
 					</header>
@@ -53,10 +54,15 @@
 							<article id="abt">
 								<h2 class="major">Who am I?</h2>
 								<span class="image main"><img src="images/mePic.png" alt="" /></span>
-								<p>Hey! I'm Go, an undergraduate student currently pursuing a BSc in Computer Science with minor in Psychology at the University of <b>Calgary</b>. 
-									I started off my school year studying Psychology, but slowly transitioned into programming over covid.</p>
-								<p>Since I'm a late-comer, my coding language pool is very small - I've coded in <b>Python, Java, Assembly</b> (with a bit of <b>C</b>), and am currently learning 
-									<b>HTML</b> as I'm writing this!</p>
+								<p>
+									I'm a recent graduate at the University of Calgary with a Bachelors in <b>Psychology</b> and a minor
+									in <b>Computer Science</b>. 
+								</p>
+								<p>
+									My interdisciplinary background combines technical software development with an understanding of human behavior,
+									allowing me to approach problems with both analytical and user-focused perspectives.
+								</p>
+								
 							</article>
 						
 						<!-- Projects -->
@@ -64,9 +70,9 @@
 								<h2 class="major">My Projects</h2>
 								<span class="image main"><img src="" alt="" /></span>
 								<ul class="actions stacked">
-									<li><a href="#ezchef" class="button primary">ezChef Cooking Platform</a></li>
-									<li><a href="#receiptsplit" class="button">ReceiptSplit</a></li>
-									<li><a href="#datingwidget" class="button primary">Dating Widget</a></li>
+									<li><a href="#ezchef" class="button primary">ezChef</a></li>
+									<!-- <li><a href="#receiptsplit" class="button">ReceiptSplit AI</a></li> -->
+									<!-- <li><a href="#datingwidget" class="button primary">Dating Widget</a></li> -->
 									<li><a href="#animanga" class="button">Animanga Tracker</a></li>
 								</ul>
 							</article>
@@ -74,6 +80,85 @@
 							<!-- ezChef Cooking Platform -->
 								<article id="ezchef">
 									<h2 class="major">ezChef Recipe Platform</h2>
+										<h3 class="major">Problem and Motivation</h3>
+											<p>
+												Take out apps made eating out the default, but that is expensive. Cooking at home is cheaper, builds useful skills, and can be social - yet many people
+												still do not cook because they cannot decide what to make, or they do not have easily accessible recipes in one place.
+												<br>
+												<br>
+												ezChef is the recipe layer for that gap: search, save, and share recipes so home cooking is easier to choose.
+											</p>
+										<h3 class="major">Key Features</h3>
+											<ol>
+												<li>Users can quickly find recipes based on one on more queries</li>
+												<li>Users have a "cookbook" where they can add and save recipes to for easy referral</li>
+												<li>Users can create, share, and review recipes</li>
+												<li>Users will also be able to see the nutritional value of each recipe</li>
+											</ol>
+										<h3 class="major">Tech Stack</h3>
+											<div class="table-wrapper">
+												<table class="alt">
+													<thead>
+														<tr>
+															<th>Layer</th>
+															<th>Technologies</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr>
+															<td>Frontend</td>
+															<td>React, React Router, Material UI, Emotion, Webpack + Babel</td>
+														</tr>
+														<tr>
+															<td>Backend + Database</td>
+															<td>Django, Django REST Framework; MySQL</td>
+														</tr>
+														<tr>
+															<td>Authentication</td>
+															<td>JWT Authenticaion</td>
+														</tr>
+														<tr>
+															<td>Tooling</td>
+															<td>Python venv + pip; Node for <code>npm run dev/build</code>; Local run: <code>python manage.py runserver</code></td>
+														</tr>
+													</tbody>
+													<tfoot>
+														<tr>
+															<td colspan="2"></td>
+														</tr>
+													</tfoot>
+												</table>
+											</div>
+										<h3 class="major">My Contributions</h3>
+											<li>Proposed ezChef and acted as project lead.</li>
+											<li>Designed and finalized the EER and relational models (normalized ingredients/quantities/units, reviews, cookbooks).</li>
+											<li>Wrote the MySQL DDL, loaded sample data, and stood up the live schema.</li>
+											<li>Implemented most of the Django REST backend: unmanaged models mapped to the schema, serializers, and views (auth, recipes, 
+												categories,cookbook-related endpoints).</li>
+											<li>Helped wire the React UI to those APIs and debug schema/JWT/URL mismatches when the frontend and database disagreed.</li>
+										<h3 class="major">Challenges and Solutions</h3>
+											<p>
+												This is was my first fullstack app in a heavy database class, so the schema had to be right before the product could exist.
+												<br>
+												The main difficulties were:
+												<li>
+													<b>Schema-first Django</b> - tables already existed from our DDL. We could not let migrations invent a whole new schema; 
+													unmanaged models, serializers, and views had to stay 1:1 with MySQL or the UI would return empty/wrong data.
+												</li>
+												<li>
+													<b>Auth and a split stack</b> - JWT on Django, then React calling <code>/api/...</code>, including CSRF and token refresh
+													so more than one user could use the app locally.
+												</li>
+												<li>
+													<b>Frontend-backend contract</b> - cookbook membership, recipe ingredients (amount + unit), and category type/region only worked
+													after the API shape matched the relational design. I learned Django, REST, and enough React/JS on the job to close those gaps.
+												</li>
+											</p>
+
+										<h3 class="major">Future Implementations</h3>
+											<li>Deploy the app so it is not local-only.</li>
+											<li>Allow users to add recipe photos, with a small cap (e.g. instructional images) so pages stay scannable.</li>
+											<li>In-app discussion thread on recipes, realtime chat as a later system.</li>
 									<ul class="actions article-back">
 										<li><a href="#proj" class="button icon solid fa-arrow-left">Back to Projects</a></li>
 									</ul>
@@ -81,7 +166,54 @@
 
 							<!-- ReceiptSplit AI -->
 								<article id="receiptsplit">
-									<h2 class="major">ReceiptSplit</h2>
+									<h2 class="major">ReceiptSplit AI</h2>
+										<p>
+										</p>
+										<h3 class="major">Motivation</h3>
+											<p>
+											</p>
+										<h3 class="major">Key Features</h3>
+											<ol>
+											</ol>
+										<h3 class="major">Tech Stack</h3>
+											<div class="table-wrapper">
+												<table class="alt">
+													<thead>
+														<tr>
+															<th>Name</th>
+															<th>Description</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr>
+															<td>Frontend</td>
+															<td></td>
+														</tr>
+														<tr>
+															<td>Backend</td>
+															<td></td>
+														</tr>
+														<tr>
+															<td>Authentication</td>
+															<td></td>
+														</tr>
+														<tr>
+															<td>Version Control</td>
+															<td></td>
+														</tr>
+													</tbody>
+													<tfoot>
+														<tr>
+															<td colspan="2"></td>
+														</tr>
+													</tfoot>
+												</table>
+											</div>
+										<h3 class="major">Challenges and Solutions</h3>
+											<p>
+
+											</p>
+										<h3 class="major">Future Implementations</h3>
 									<ul class="actions article-back">
 										<li><a href="#proj" class="button icon solid fa-arrow-left">Back to Projects</a></li>
 									</ul>
@@ -90,6 +222,53 @@
 							<!-- Dating Widget -->
 								<article id="datingwidget">
 									<h2 class="major">Dating Widget</h2>
+										<p>
+										</p>
+										<h3 class="major">Motivation</h3>
+											<p>
+											</p>
+										<h3 class="major">Key Features</h3>
+											<ol>
+											</ol>
+										<h3 class="major">Tech Stack</h3>
+											<div class="table-wrapper">
+												<table class="alt">
+													<thead>
+														<tr>
+															<th>Name</th>
+															<th>Description</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr>
+															<td>Frontend</td>
+															<td></td>
+														</tr>
+														<tr>
+															<td>Backend</td>
+															<td></td>
+														</tr>
+														<tr>
+															<td>Authentication</td>
+															<td></td>
+														</tr>
+														<tr>
+															<td>Version Control</td>
+															<td></td>
+														</tr>
+													</tbody>
+													<tfoot>
+														<tr>
+															<td colspan="2"></td>
+														</tr>
+													</tfoot>
+												</table>
+											</div>
+										<h3 class="major">Challenges and Solutions</h3>
+											<p>
+
+											</p>
+										<h3 class="major">Future Implementations</h3>
 									<ul class="actions article-back">
 										<li><a href="#proj" class="button icon solid fa-arrow-left">Back to Projects</a></li>
 									</ul>
@@ -98,6 +277,53 @@
 							<!-- Animanga Tracker -->
 								<article id="animanga">
 									<h2 class="major">Animanga Tracker</h2>
+										<p>
+										</p>
+										<h3 class="major">Motivation</h3>
+											<p>
+											</p>
+										<h3 class="major">Key Features</h3>
+											<ol>
+											</ol>
+										<h3 class="major">Tech Stack</h3>
+											<div class="table-wrapper">
+												<table class="alt">
+													<thead>
+														<tr>
+															<th>Name</th>
+															<th>Description</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr>
+															<td>Frontend</td>
+															<td></td>
+														</tr>
+														<tr>
+															<td>Backend</td>
+															<td></td>
+														</tr>
+														<tr>
+															<td>Authentication</td>
+															<td></td>
+														</tr>
+														<tr>
+															<td>Version Control</td>
+															<td></td>
+														</tr>
+													</tbody>
+													<tfoot>
+														<tr>
+															<td colspan="2"></td>
+														</tr>
+													</tfoot>
+												</table>
+											</div>
+										<h3 class="major">Challenges and Solutions</h3>
+											<p>
+
+											</p>
+										<h3 class="major">Future Implementations</h3>
 									<ul class="actions article-back">
 										<li><a href="#proj" class="button icon solid fa-arrow-left">Back to Projects</a></li>
 									</ul>
@@ -113,40 +339,13 @@
 							<article id="resume">
 								<h2 class="major">My Resumes</h2>
 								<span class="image main"><img src="" alt="" /></span>
-							</article>
+								<ul class="actions stacked">
+									<li><a class="button primary">English Resume</a></li>
+									<li><a class="button">Japanese Resume</a></li>
+								</ul>
+							</article>	
 
 						<!-- Contact -->
-							<article id="cont">
-								<h2 class="major">Contact</h2>
-								<span class="image main"><img src="images/pic03.jpg" alt="" /></span>
-								<p>TBA</p>
-								<form method="post" action="#">
-									<div class="fields">
-										<div class="field half">
-											<label for="name">Name</label>
-											<input type="text" name="name" id="name" />
-										</div>
-										<div class="field half">
-											<label for="email">Email</label>
-											<input type="text" name="email" id="email" />
-										</div>
-										<div class="field">
-											<label for="message">Message</label>
-											<textarea name="message" id="message" rows="4"></textarea>
-										</div>
-									</div>
-									<ul class="actions">
-										<li><input type="submit" value="Send Message" class="primary" /></li>
-										<li><input type="reset" value="Reset" /></li>
-									</ul>
-								</form>
-								<ul class="icons">
-									<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-									<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-									<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-									<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-								</ul>	
-							</article>		
 
 						<!-- Elements FOR SYNTAX INFORMATION -->
 							<article id="elements">
@@ -167,7 +366,9 @@
 									<h4>Blockquote</h4>
 									<blockquote>Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan faucibus. Vestibulum ante ipsum primis in faucibus lorem ipsum dolor sit amet nullam adipiscing eu felis.</blockquote>
 									<h4>Preformatted</h4>
-									<pre><code>i = 0;
+									<pre>
+										<code>
+i = 0;
 
 while (!deck.isInOrder()) {
     print 'Iteration ' + i;
@@ -175,7 +376,9 @@ while (!deck.isInOrder()) {
     i++;
 }
 
-print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
+print 'It took ' + i + ' iterations to sort the deck.';
+										</code>
+									</pre>
 								</section>
 
 								<section>
@@ -394,9 +597,7 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 
 				<!-- Footer -->
 					<footer id="footer">
-						<!--<p class="copyright">&copy; SENG Portfolio Design: <a href="https://html5up.net">HTML5 UP</a>.</p>-->
-					</footer>
-					<footer id="footer">
+						<p class="copyright">&copy; Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
 					</footer>
 
 			</div>
